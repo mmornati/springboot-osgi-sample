@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>sample</artifactId>
+    <groupId>com.mornati.sample</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>sample-bundle</artifactId>
+  <packaging>bundle</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.mornati.sample</groupId>
+      <artifactId>commons</artifactId>
+      <version>${parent.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>${bundle.plugin.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>
+              ${project.groupId}.${project.artifactId}
+            </Bundle-SymbolicName>
+            <Bundle-Name>${project.name}</Bundle-Name>
+            <Bundle-Version>${project.version}</Bundle-Version>
+            <Bundle-Activator>com.mornati.sample.plugin.psp.sample.Activator</Bundle-Activator>
+            <Private-Package>com.mornati.sample.plugin.psp.sample</Private-Package>
+            <Import-Package>!*,org.osgi.framework,com.mornati.sample.commons.plugins,com.mornati.sample.commons.plugins.dto</Import-Package>
+            <Embed-Dependency>
+              <!-- Add here any custom dependency -->
+              slf4j-api;scope=compile|runtime; type=!pom; inline=false,
+              logback-*;scope=compile|runtime; type=!pom; inline=false
+            </Embed-Dependency>
+            <Export-Service>com.mornati.sample.plugin.psp.sample.Sample</Export-Service>
+            <Embed-Transitive>true</Embed-Transitive>
+          </instructions>
+          <buildDirectory>plugins</buildDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
