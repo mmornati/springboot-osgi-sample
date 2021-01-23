@@ -22,8 +22,8 @@
 
 	<properties>
 		<java.version>14</java.version>
-		<osgi.version>6.0.0</osgi.version>
-		<felix.version>6.0.4</felix.version>
+		<osgi.version>8.0.0</osgi.version>
+		<felix.version>7.0.0</felix.version>
 		<bundle.plugin.version>5.1.1</bundle.plugin.version>
 	</properties>
 
@@ -34,7 +34,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.core</artifactId>
+			<artifactId>osgi.core</artifactId>
 			<version>${osgi.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.framework -->
