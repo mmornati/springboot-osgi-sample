@@ -1,3 +1,5 @@
+![Java CI](https://github.com/mmornati/springboot-osgi-sample/workflows/Java%20CI/badge.svg?branch=main)
+
 # SpringBoot / OSGi framework
 This project is showing a simple way to use a SpringBoot application server and extending it with OSGi bundle.
 The application is including a service which is loading and exposing the Felix OSGi Framework. With a proper configuration you will be able to use it for "plugins".
