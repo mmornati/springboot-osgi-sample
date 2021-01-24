@@ -33,3 +33,4 @@ build/
 .vscode/
 
 plugins/*.jar
+.DS_Store

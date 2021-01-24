@@ -21,7 +21,7 @@
   <description>Sample OGGi / SpringBoot integration</description>
 
   <properties>
-    <java.version>14</java.version>
+    <java.version>15</java.version>
     <osgi.version>8.0.0</osgi.version>
     <felix.version>7.0.0</felix.version>
     <bundle.plugin.version>5.1.1</bundle.plugin.version>
