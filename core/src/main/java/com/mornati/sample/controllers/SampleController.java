@@ -33,7 +33,7 @@ public class SampleController {
   @ResponseBody
   public ResponseEntity<ActionResponse> doAction(@PathVariable(value = "name") String name) {
 
-    IPlugin pluginImpl = pluginList.getPlugins().get(String.format("com.mornati.sample.%s", name));
+    IPlugin pluginImpl = pluginList.getPlugins().get(name);
     if (pluginImpl != null) {
       return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
           .body(pluginImpl.doAction());
@@ -46,7 +46,7 @@ public class SampleController {
   @ResponseBody
   public ResponseEntity<NotificationResponse> doNotify(@PathVariable(value = "name") String name) {
 
-    IPlugin pluginImpl = (IPlugin) pluginList.getPlugins().get(String.format("com.mornati.sample.%s", name));
+    IPlugin pluginImpl = (IPlugin) pluginList.getPlugins().get(name);
     if (pluginImpl != null) {
       return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
           .body(pluginImpl.doNotification());

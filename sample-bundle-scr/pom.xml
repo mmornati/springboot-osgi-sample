@@ -45,44 +45,31 @@
         <groupId>biz.aQute.bnd</groupId>
         <artifactId>bnd-maven-plugin</artifactId>
         <version>${maven.bundle.plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>bnd-process</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <bnd><![CDATA[
+          -includeresource: slf4j-api-[0-9.]*.jar;logback-*-[0-9.]*.jar;lib:=true
+          Import-Package: org.osgi.framework,com.mornati.sample.commons.plugins,com.mornati.sample.commons.plugins.dto
+          Private-Package: com.mornati.sample.plugin.psp.scr
+          Export-Service: com.mornati.sample.plugin.psp.scr.SampleScr
+          ]]></bnd>
+        </configuration>
       </plugin>
       <plugin>
-	    <groupId>org.apache.maven.plugins</groupId>
-	    <artifactId>maven-jar-plugin</artifactId>
-	    <configuration>
-	        <archive>
-	            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-	        </archive>
-	    </configuration>
-	  </plugin>
-<!--       <plugin> -->
-<!--         <groupId>biz.aQute.bnd</groupId> -->
-<!--         <artifactId>bnd-indexer-maven-plugin</artifactId> -->
-<!--         <version>${maven.bundle.plugin.version}</version> -->
-<!--         <configuration> -->
-<!--           <includeJar>true</includeJar> -->
-<!--         </configuration> -->
-<!--       </plugin> -->
-<!--       <plugin> -->
-<!--         <groupId>biz.aQute.bnd</groupId> -->
-<!--         <artifactId>bnd-export-maven-plugin</artifactId> -->
-<!--         <version>${maven.bundle.plugin.version}</version> -->
-<!--         <configuration> -->
-<!--           <bndruns> -->
-<!--             <bndrun>app.bndrun</bndrun> -->
-<!--           </bndruns> -->
-<!--         </configuration> -->
-<!--       </plugin> -->
-<!--       <plugin> -->
-<!--         <groupId>biz.aQute.bnd</groupId> -->
-<!--         <artifactId>bnd-resolver-maven-plugin</artifactId> -->
-<!--         <version>${maven.bundle.plugin.version}</version> -->
-<!--         <configuration> -->
-<!--           <bndruns> -->
-<!--             <bndrun>app.bndrun</bndrun> -->
-<!--           </bndruns> -->
-<!--         </configuration> -->
-<!--       </plugin> -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+          </archive>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
