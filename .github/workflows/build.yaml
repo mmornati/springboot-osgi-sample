@@ -23,3 +23,11 @@ jobs:
           coverageLocations: |
             ${{github.workspace}}/commons/target/site/jacoco/jacoco.xml:jacoco
             ${{github.workspace}}/core/target/site/jacoco/jacoco.xml:jacoco
+      - name: Docker Build
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{github.workspace}}/core
+          file: ${{github.workspace}}/core/src/docker/Dockerfile
+          push: false
+          tags: mmornati/osgi-sample:latest
