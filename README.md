@@ -87,7 +87,7 @@ Both two are working and bringing to the same expected result.
 ### BundleActivator
 The Bundle with the Activator is using directly the OSGi Ativator workflow: inside a bundle there is a Activator class which is managing the `start` and `stop` operation. In this project, as for each bundle the operation is always the same (register a service to the `BundleContext`), instead of directly implementing the `BundleActivator` interface, there is an `AbstractPluginActivator` which is able to take care to these operations for the bundles.
 
-## SCR
+### SCR
 The Service Component Runtime is using a different approach: if you want only to register services implementing an interface, you can use annotations to allow the core application to identify which service should be registered.
 This is managed by the Apache Felix SCR bundle.
 Inside your bundle, to define a `IPlugin service you just need to create your class in the following way
