@@ -33,6 +33,21 @@ java -jar core/target/core-0.0.1-SNAPSHOT.jar
 The application will even load the sample bundle within the `plugins` folder.
 You can play with it simply removing, adding back, ... and check what the OSGi server will be
 
+## Docker
+The application is coming with a sample Dockerfile which shows how an OSGi / SpringBoot application can be packaged, following the Docker best practices.
+To build the docker image you can use the following command from the project root folder:
+```bash 
+docker build -t osgi-sample -f core/src/docker/Dockerfile core
+```
+
+To start the container once build you can use a command like the following (you need to adapt it based on your environment):
+```bash
+docker run -it -e pluginsService.org.osgi.framework.storage=/app/felix-cache -e pluginsService.felix.auto.deploy.dir=/app/internal-bundles  -e pluginsService.felix.fileinstall.dir=/app/plugins -v /Users/Marco/Projects/springboot-osgi-sample/plugins:/app/plugins -p 8080:8080 osgi-sample
+```
+The plugins/bundle are managed in a docker external volume. This means you can easily add them without rebuilding your base image. Only the `internal-bundles` folder is inside the docker itself. This because this JARs are considered mandatory for this sample project.
+
+As we are using a multi layer best practices splitting libraries from project source file. If we do not change the dependencies, only the last layer of the Dockerfile will be updated when we modified the source code. This will also allow a quick deployment of your images.
+
 ## Test the application
 The application is exposing simples APIs:
 
