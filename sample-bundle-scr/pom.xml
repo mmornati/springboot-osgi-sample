@@ -68,6 +68,7 @@
           <archive>
             <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
           </archive>
+          <outputDirectory>../plugins</outputDirectory>
         </configuration>
       </plugin>
     </plugins>
