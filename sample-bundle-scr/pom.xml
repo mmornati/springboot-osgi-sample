@@ -47,33 +47,42 @@
         <version>${maven.bundle.plugin.version}</version>
       </plugin>
       <plugin>
-        <groupId>biz.aQute.bnd</groupId>
-        <artifactId>bnd-indexer-maven-plugin</artifactId>
-        <version>${maven.bundle.plugin.version}</version>
-        <configuration>
-          <includeJar>true</includeJar>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>biz.aQute.bnd</groupId>
-        <artifactId>bnd-export-maven-plugin</artifactId>
-        <version>${maven.bundle.plugin.version}</version>
-        <configuration>
-          <bndruns>
-            <bndrun>app.bndrun</bndrun>
-          </bndruns>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>biz.aQute.bnd</groupId>
-        <artifactId>bnd-resolver-maven-plugin</artifactId>
-        <version>${maven.bundle.plugin.version}</version>
-        <configuration>
-          <bndruns>
-            <bndrun>app.bndrun</bndrun>
-          </bndruns>
-        </configuration>
-      </plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-jar-plugin</artifactId>
+	    <configuration>
+	        <archive>
+	            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+	        </archive>
+	    </configuration>
+	  </plugin>
+<!--       <plugin> -->
+<!--         <groupId>biz.aQute.bnd</groupId> -->
+<!--         <artifactId>bnd-indexer-maven-plugin</artifactId> -->
+<!--         <version>${maven.bundle.plugin.version}</version> -->
+<!--         <configuration> -->
+<!--           <includeJar>true</includeJar> -->
+<!--         </configuration> -->
+<!--       </plugin> -->
+<!--       <plugin> -->
+<!--         <groupId>biz.aQute.bnd</groupId> -->
+<!--         <artifactId>bnd-export-maven-plugin</artifactId> -->
+<!--         <version>${maven.bundle.plugin.version}</version> -->
+<!--         <configuration> -->
+<!--           <bndruns> -->
+<!--             <bndrun>app.bndrun</bndrun> -->
+<!--           </bndruns> -->
+<!--         </configuration> -->
+<!--       </plugin> -->
+<!--       <plugin> -->
+<!--         <groupId>biz.aQute.bnd</groupId> -->
+<!--         <artifactId>bnd-resolver-maven-plugin</artifactId> -->
+<!--         <version>${maven.bundle.plugin.version}</version> -->
+<!--         <configuration> -->
+<!--           <bndruns> -->
+<!--             <bndrun>app.bndrun</bndrun> -->
+<!--           </bndruns> -->
+<!--         </configuration> -->
+<!--       </plugin> -->
     </plugins>
   </build>
 
