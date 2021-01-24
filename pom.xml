@@ -7,6 +7,7 @@
     <module>core</module>
     <module>commons</module>
     <module>sample-bundle</module>
+    <module>sample-bundle-scr</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -50,12 +51,36 @@
       <version>${felix.version}</version>
     </dependency>
 
+    <!-- Core Bundles. Declared here to use maven to download and package them -->
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.fileinstall</artifactId>
       <version>3.6.8</version>
       <scope>provided</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.scr -->
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.scr</artifactId>
+      <version>2.1.24</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.osgi/org.osgi.util.promise -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.util.promise</artifactId>
+      <version>1.1.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.osgi/org.osgi.util.function -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.util.function</artifactId>
+      <version>1.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+
 
     <dependency>
       <groupId>org.springframework.boot</groupId>

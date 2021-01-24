@@ -50,7 +50,7 @@
               <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-              <includeArtifactIds>org.apache.felix.fileinstall</includeArtifactIds>
+              <includeArtifactIds>org.apache.felix.fileinstall,org.osgi.util.function,org.osgi.util.promise,org.apache.felix.scr</includeArtifactIds>
               <outputDirectory>${project.build.directory}/internal-bundles</outputDirectory>
               <overWriteReleases>false</overWriteReleases>
               <overWriteSnapshots>true</overWriteSnapshots>

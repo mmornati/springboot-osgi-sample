@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0">
+  <scr:component enabled="true" name="com.mornati.sample.plugin.psp.scr.SampleScr">
+    <implementation class="com.mornati.sample.plugin.psp.scr.SampleScr"/>
+    <service servicefactory="false">
+      <provide interface="com.mornati.sample.commons.plugins.IPlugin"/>
+    </service>
+    <property name="liveActionName" type="String" value="SampleScrPlugin"/>
+    <property name="service.pid" value="com.mornati.sample.plugin.psp.scr.SampleScr"/>
+  </scr:component>
+</components>

@@ -1,0 +1,12 @@
+index: target/index.xml;name="app"
+
+-standalone: ${index}
+
+-runrequires: osgi.identity;filter:='(osgi.identity=io.jatoms.impl)'
+-runfw: org.eclipse.osgi
+-runee: JavaSE-15
+
+-resolve.effective: active
+-runbundles: \
+	io.jatoms.impl;version='[1.0.0,1.0.1)',\
+	org.apache.felix.scr;version='[2.1.10,2.1.11)'

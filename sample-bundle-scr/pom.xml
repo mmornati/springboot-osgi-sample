@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>sample</artifactId>
+    <groupId>com.mornati.sample</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>sample-bundle-scr</artifactId>
+
+  <properties>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.bundle.plugin.version>5.2.0</maven.bundle.plugin.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.mornati.sample</groupId>
+      <artifactId>commons</artifactId>
+      <version>${parent.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component.annotations</artifactId>
+      <version>1.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-maven-plugin</artifactId>
+        <version>${maven.bundle.plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-indexer-maven-plugin</artifactId>
+        <version>${maven.bundle.plugin.version}</version>
+        <configuration>
+          <includeJar>true</includeJar>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-export-maven-plugin</artifactId>
+        <version>${maven.bundle.plugin.version}</version>
+        <configuration>
+          <bndruns>
+            <bndrun>app.bndrun</bndrun>
+          </bndruns>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-resolver-maven-plugin</artifactId>
+        <version>${maven.bundle.plugin.version}</version>
+        <configuration>
+          <bndruns>
+            <bndrun>app.bndrun</bndrun>
+          </bndruns>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+
+</project>
