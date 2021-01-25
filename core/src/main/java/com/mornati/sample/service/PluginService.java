@@ -1,7 +1,11 @@
 package com.mornati.sample.service;
 
 import com.mornati.sample.config.FelixConfiguration;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 import javax.annotation.PreDestroy;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +39,6 @@ public class PluginService {
     try {
       // Create an instance and initialise the framework.
       FrameworkFactory factory = new org.apache.felix.framework.FrameworkFactory();
-
       framework = factory.newFramework(felixConfiguration.getPluginsService());
       framework.init();
 
