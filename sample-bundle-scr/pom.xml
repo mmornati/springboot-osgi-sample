@@ -52,16 +52,6 @@
             </goals>
           </execution>
         </executions>
-<!--         All this will be calculated by the bnd-maven-plugin -->
-<!--         SLF4j and the rest should now be provided by the framework -->
-<!--         <configuration> -->
-<!--           <bnd><![CDATA[ -->
-<!--           -includeresource: slf4j-api-[0-9.]*.jar;logback-*-[0-9.]*.jar;lib:=true -->
-<!--           Import-Package: org.osgi.framework,com.mornati.sample.commons.plugins,com.mornati.sample.commons.plugins.dto -->
-<!--           Private-Package: com.mornati.sample.plugin.psp.scr -->
-<!--           Export-Service: com.mornati.sample.plugin.psp.scr.SampleScr -->
-<!--           ]]></bnd> -->
-<!--         </configuration> -->
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
