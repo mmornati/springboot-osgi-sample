@@ -1,16 +1,7 @@
 package com.mornati.sample.service;
 
 import com.mornati.sample.config.FelixConfiguration;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.PreDestroy;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +35,7 @@ public class PluginService {
     try {
       // Create an instance and initialise the framework.
       FrameworkFactory factory = new org.apache.felix.framework.FrameworkFactory();
+
       framework = factory.newFramework(felixConfiguration.getPluginsService());
       framework.init();
 
@@ -62,7 +54,7 @@ public class PluginService {
       List<Capability> caps = br.getCapabilities("osgi.ee");
       log.debug("OSGi capabilities: " + caps);
     } catch (Exception ex) {
-      ex.printStackTrace();
+      log.error("Error initializing the OSGi framework. As it is mandatory the system will be halted", ex);
       System.exit(0);
     }
   }

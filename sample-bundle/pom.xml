@@ -36,6 +36,7 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
+<!--       You might want to condider replacing this with the config from the sample-bundle-src config -->
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
