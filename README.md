@@ -53,7 +53,7 @@ The application is exposing simples APIs:
 
 `GET /v1/samples` to retrieve the list of installed bundles.
 ```bash
-curl http://localhost:8080/v1/sample
+curl http://localhost:8080/v1/samples
 [
 "com.mornati.sample.sample-bundle"
 ]
