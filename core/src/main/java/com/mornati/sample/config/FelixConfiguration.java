@@ -12,5 +12,5 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 public class FelixConfiguration {
 
-  private Map<String, String> pluginsService;
+  private Map<String, String> config;
 }

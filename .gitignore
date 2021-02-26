@@ -35,3 +35,5 @@ build/
 plugins/*.jar
 .DS_Store
 logs
+felix-cache
+.jqwik-database

@@ -1,6 +1,5 @@
 package com.mornati.sample.controllers;
 
-import com.mornati.sample.commons.plugins.IPlugin;
 import com.mornati.sample.commons.plugins.dto.ActionResponse;
 import com.mornati.sample.commons.plugins.dto.NotificationResponse;
 import com.mornati.sample.service.PluginList;
@@ -25,35 +24,22 @@ public class SampleController {
   @ResponseBody
   public ResponseEntity<Set<String>> getSamples() {
     return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
-        .body(pluginList.getPlugins().keySet());
+        .body(pluginList.registered());
 
   }
 
   @GetMapping(value = "/{name}")
   @ResponseBody
   public ResponseEntity<ActionResponse> doAction(@PathVariable(value = "name") String name) {
-
-    IPlugin pluginImpl = pluginList.getPlugins().get(name);
-    if (pluginImpl != null) {
-      return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
-          .body(pluginImpl.doAction());
-    } else {
-      return ResponseEntity.badRequest().body(ActionResponse.builder().body("Plugin not found for " + name).build());
-    }
+    return pluginList.lookup(name).map(pluginImpl -> ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
+        .body(pluginImpl.doAction())).orElseGet(() -> ResponseEntity.badRequest().body(ActionResponse.builder().body("Plugin not found for " + name).build()));
   }
 
   @GetMapping(value = "/{name}/notification")
   @ResponseBody
   public ResponseEntity<NotificationResponse> doNotify(@PathVariable(value = "name") String name) {
-
-    IPlugin pluginImpl = (IPlugin) pluginList.getPlugins().get(name);
-    if (pluginImpl != null) {
-      return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
-          .body(pluginImpl.doNotification());
-    } else {
-      return ResponseEntity.badRequest().body(NotificationResponse.builder().body("Plugin not found for " + name).build());
-    }
-
-
+    return pluginList.lookup(name).map(pluginImpl -> ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
+        .body(pluginImpl.doNotification())).orElseGet(() -> ResponseEntity.badRequest().body(NotificationResponse.builder().body("Plugin not found for " + name).build()));
   }
+
 }
