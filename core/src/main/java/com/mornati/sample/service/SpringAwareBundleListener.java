@@ -5,6 +5,7 @@ import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.BundleListener;
 import org.osgi.framework.InvalidSyntaxException;
@@ -33,17 +34,19 @@ public class SpringAwareBundleListener implements BundleListener {
 
     if (bundleEvent.getBundle().getState() == Bundle.ACTIVE) {
       try {
-        ServiceReference<?>[] services = bundleEvent.getBundle().getBundleContext().getAllServiceReferences(IPlugin.class.getName(), null);
-        if (services != null && services.length>0)
-        Arrays.asList(services)
-            .forEach(s -> pluginList.getPlugins().put(s.getBundle().getSymbolicName(), (IPlugin) s.getBundle().getBundleContext().getService(s)));
+        Bundle bundle = bundleEvent.getBundle();
+        BundleContext bundleContext = bundle.getBundleContext();
+        ServiceReference<?>[] services = bundleContext.getAllServiceReferences(IPlugin.class.getName(), null);
+        if (services != null && services.length > 0)
+          Arrays.asList(services)
+              .forEach(s -> pluginList.register(s.getBundle().getSymbolicName(), (IPlugin) bundleContext.getService(s)));
 
       } catch (InvalidSyntaxException e) {
         log.warn("Problem reading services from BundleContext");
       }
 
     } else if (bundleEvent.getBundle().getState() == Bundle.UNINSTALLED) {
-      pluginList.getPlugins().remove(bundleEvent.getBundle().getSymbolicName());
+      pluginList.unregister(bundleEvent.getBundle().getSymbolicName());
     }
 
   }

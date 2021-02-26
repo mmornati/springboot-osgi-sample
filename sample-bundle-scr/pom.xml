@@ -54,8 +54,7 @@
         </executions>
         <configuration>
           <bnd><![CDATA[
-          -includeresource: slf4j-api-[0-9.]*.jar;logback-*-[0-9.]*.jar;lib:=true
-          Import-Package: org.osgi.framework,org.xml.sax,org.xml.sax.helpers,javax.xml.parsers,javax.naming,com.mornati.sample.commons.plugins,com.mornati.sample.commons.plugins.dto
+          Import-Package: *;version="0";resolution:=optional
           Private-Package: com.mornati.sample.plugin.psp.scr
           Export-Service: com.mornati.sample.plugin.psp.scr.SampleScr
           ]]></bnd>
