@@ -1,10 +1,10 @@
 package com.mornati.sample.service;
 
 import com.mornati.sample.config.FelixConfiguration;
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -23,7 +23,6 @@ import org.osgi.framework.wiring.BundleRevision;
 import org.osgi.resource.Capability;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
@@ -99,27 +98,27 @@ public class PluginService {
   }
 
   protected Set<String> getPackages(String basePackage) {
-    Set<String> packagesNames = new HashSet<>();
-
     try {
       ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
       MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resourcePatternResolver);
-
-      String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolveBasePackage(basePackage) + "/" + "**/*.class";
-      Resource[] resources = resourcePatternResolver.getResources(packageSearchPath);
-      for (Resource resource : resources) {
-        MetadataReader metadataReader = metadataReaderFactory.getMetadataReader(resource);
-        Class aClass = Class.forName(metadataReader.getClassMetadata().getClassName());
-        String packageName = aClass.getPackage().getName();
-        packagesNames.add(packageName);
-      }
-    } catch (ClassNotFoundException | IOException e) {
-      log.error("Error looking for provided package", e);
+      String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolveBasePackage(basePackage) + File.separator + "**/*.class";
+      return Arrays.stream(resourcePatternResolver.getResources(packageSearchPath)).map(resource -> {
+        try {
+          MetadataReader metadataReader = metadataReaderFactory.getMetadataReader(resource);
+          Class<?> aClass = Class.forName(metadataReader.getClassMetadata().getClassName());
+          return aClass.getPackage().getName();
+        } catch (ClassNotFoundException | IOException e) {
+          log.error("Error looking for provided package", e);
+          return null;
+        }
+      }).collect(Collectors.toSet());
+    } catch (IOException e) {
+      log.error("Error looking for provided resource", e);
+      return Set.of();
     }
-    return packagesNames;
   }
 
-  private static String resolveBasePackage(String basePackage) {
+  private String resolveBasePackage(String basePackage) {
     return ClassUtils.convertClassNameToResourcePath(SystemPropertyUtils.resolvePlaceholders(basePackage));
   }
 
