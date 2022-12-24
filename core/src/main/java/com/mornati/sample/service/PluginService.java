@@ -89,7 +89,11 @@ public class PluginService {
   }
 
   /**
-   * Felix provides an isolated classloader to each bundle. Bundles need to declare what packages they need in there manifest. If a Bundle needs e.g. something from org.slf4j it either needs to have it as classes itself or another bundle must export this packages. java.* packages will be provided by the framework from the classloader it was created with. We can modify this, by giving the framework a list of additional packages, that are provided by the spring boot container (should include e.g.slf4j)
+   * Felix provides an isolated classloader to each bundle. Bundles need to declare what packages they need in there manifest.
+   * If a Bundle needs e.g. something from org.slf4j it either needs to have it as classes itself or another bundle must
+   * export this packages. java.* packages will be provided by the framework from the classloader it was created with.
+   * We can modify this, by giving the framework a list of additional packages, that are provided by the spring boot
+   * container (should include e.g.slf4j)
    */
   protected String findPackageNamesStartingWith(List<String> packages) {
     return packages.stream().map(this::getPackages)
